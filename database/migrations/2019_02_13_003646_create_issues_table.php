@@ -15,7 +15,10 @@ class CreateIssuesTable extends Migration
     {
         Schema::create('issues', function (Blueprint $table) {
             $table->increments('id');
+            $table->unsignedInteger('project_id');
             $table->timestamps();
+
+            $table->foreign('project_id')->references('id')->on('projects');
         });
     }
 
@@ -26,6 +29,9 @@ class CreateIssuesTable extends Migration
      */
     public function down()
     {
+        Schema::table('issues', function (Blueprint $table) {
+            $table->dropForeign(['project_id']);
+        });
         Schema::dropIfExists('issues');
     }
 }

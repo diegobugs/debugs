@@ -15,7 +15,10 @@ class CreateFieldsTable extends Migration
     {
         Schema::create('fields', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('object_id');
             $table->timestamps();
+
+            $table->foreign('object_id')->references('id')->on('objects');
         });
     }
 
@@ -26,6 +29,9 @@ class CreateFieldsTable extends Migration
      */
     public function down()
     {
+        Schema::table('fields', function (Blueprint $table) {
+            $table->dropForeign(['object_id']);
+        });
         Schema::dropIfExists('fields');
     }
 }
