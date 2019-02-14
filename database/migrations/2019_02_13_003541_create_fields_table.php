@@ -15,7 +15,7 @@ class CreateFieldsTable extends Migration
     {
         Schema::create('fields', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('object_id');
+            $table->unsignedInteger('object_id');
             $table->timestamps();
 
             $table->foreign('object_id')->references('id')->on('objects');
