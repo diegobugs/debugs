@@ -15,7 +15,7 @@ class UsersTableSeeder extends Seeder
             'name' => 'Saul Clavijo',
             'username' => 'sclavijo',
             'email' => 'cs_clavijo@hotmail.com',
-            'password' => bcrypt('saul_1406+')
+            'password' => bcrypt('testeo+')
         ]);
     }
 }
