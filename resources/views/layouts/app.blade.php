@@ -33,17 +33,19 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
+                        @auth
                         <li>
                             <div class="btn-group">
                                 <a href="{{route('projects.index')}}" class="btn nav-link">Projects</button>
-                                <a class="btn nav-link dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-reference="parent">
-                                  <span class="sr-only">Toggle Dropdown</span>
-                                </a>
+                                                        <a class="btn nav-link dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-reference="parent">
+                                                          <span class="sr-only">Toggle Dropdown</span>
+                                                        </a>
                                 <div class="dropdown-menu">
-                                  <a class="dropdown-item" href="{{route('projects.create')}}">Create</a>
+                                    <a class="dropdown-item" href="{{route('projects.create')}}">Create</a>
                                 </div>
-                              </div>
+                            </div>
                         </li>
+                        @endauth
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -81,10 +83,14 @@
                 </div>
             </div>
         </nav>
-
-        <main class="py-4">
-            @yield('content')
-        </main>
+        <div class="py-3">
+            <main class="container">
+                @yield('content')
+            </main>
+            <main class="container-fluid">
+                @yield('content-fluid')
+            </main>
+        </div>
     </div>
 </body>
 </html>
