@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateLabelsTable extends Migration
+class CreateIssueLabelTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,13 @@ class CreateLabelsTable extends Migration
      */
     public function up()
     {
-        Schema::create('labels', function (Blueprint $table) {
-            $table->increments('id');
-            $table->unsignedInteger('project_id')->nullable();
-            $table->string('name');
+        Schema::create('issue_label', function (Blueprint $table) {
+            $table->unsignedInteger('issue_id');
+            $table->unsignedInteger('label_id');
             $table->timestamps();
 
-            $table->foreign('project_id')->references('id')->on('projects');
+            $table->foreign('issue_id')->references('id')->on('issues');
+            $table->foreign('label_id')->references('id')->on('labels');
         });
     }
 
@@ -30,6 +30,6 @@ class CreateLabelsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('labels');
+        Schema::dropIfExists('issue_label');
     }
 }
