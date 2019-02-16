@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateLabelsTable extends Migration
+class CreateLinkTypesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,12 @@ class CreateLabelsTable extends Migration
      */
     public function up()
     {
-        Schema::create('labels', function (Blueprint $table) {
+        Schema::create('link_types', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('project_id')->nullable();
-            $table->string('name');
+            $table->string('name', 20);
+            $table->string('inward')->comment('On assigned issue. E.g.: Bloqued by [issue]');
+            $table->string('outward')->comment('On related issue. E.g.: Blocks [issue]');
             $table->timestamps();
-
-            $table->foreign('project_id')->references('id')->on('projects');
         });
     }
 
@@ -30,6 +29,6 @@ class CreateLabelsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('labels');
+        Schema::dropIfExists('link_types');
     }
 }

@@ -15,7 +15,9 @@ class CreateProjectsTable extends Migration
     {
         Schema::create('projects', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name')->comment('Name of the project');
+            $table->string('skey', 6)->comment('Project Shortcut Key. E.g.: DEBUGS');
+            $table->string('name')->comment('Project\'s name. E.g.: Debugs');
+            $table->text('description');
             $table->timestamps();
         });
     }
