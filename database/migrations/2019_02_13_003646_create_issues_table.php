@@ -16,9 +16,31 @@ class CreateIssuesTable extends Migration
         Schema::create('issues', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('project_id');
+            $table->unsignedInteger('reported_by');
+            $table->unsignedInteger('assigned_to');
+            $table->unsignedInteger('category_id');
+            $table->unsignedInteger('priority_id');
+            $table->unsignedIntefer('status_id');
+            $table->unsignedInteger('resolution_id')->nullable();
+            $table->unsignedIntefer('severity_id')->nullable();
+
+            $table->string('title', 100);
+            $table->text('description')->nullable();
+            $table->timestamp('resolution_date')->nullable();
+            $table->timestamp('due_date')->nullable();
+            $table->integer('views')->nullable();
+            $table->integer('votes')->nullable();
             $table->timestamps();
 
             $table->foreign('project_id')->references('id')->on('projects');
+            $table->foreign('reported_by')->references('id')->on('users');
+            $table->foreign('assigned_to')->references('id')->on('users');
+            $table->foreign('category_id')->references('id')->on('categories');
+            $table->foreign('priority_id')->references('id')->on('priorities');
+            $table->foreign('status_id')->references('id')->on('statuses');
+            $table->foreign('resolution_id')->references('id')->on('resolutions');
+            $table->foreign('severity_id')->references('id')->on('severities');
+
         });
     }
 
