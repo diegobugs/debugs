@@ -8,6 +8,16 @@ use Illuminate\Http\Request;
 class ProjectController extends Controller
 {
     /**
+     * Instantiate a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -25,7 +35,8 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        return view('projects.create');
+        $project = new Project();
+        return view('projects.create', compact('project'));
     }
 
     /**
@@ -36,7 +47,12 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $project = new Project();
+        $project->name = $request->name;
+
+        $project->save();
+
+        return redirect()->route('projects.index');
     }
 
     /**
@@ -58,7 +74,8 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        //
+        return view('projects.edit', compact('project'));
+
     }
 
     /**
@@ -70,7 +87,10 @@ class ProjectController extends Controller
      */
     public function update(Request $request, Project $project)
     {
-        //
+        $project->name = $request->name;
+        $project->save();
+
+        return view('projects.show', compact('project'));
     }
 
     /**
