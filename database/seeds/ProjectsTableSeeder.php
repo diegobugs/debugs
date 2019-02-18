@@ -12,6 +12,7 @@ class ProjectsTableSeeder extends Seeder
     public function run()
     {
         DB::table('projects')->insert([
+            'skey' => 'TEST',
             'name' => 'Test project'
         ]);
     }

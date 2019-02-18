@@ -20,9 +20,9 @@ class CreateIssuesTable extends Migration
             $table->unsignedInteger('assigned_to');
             $table->unsignedInteger('category_id');
             $table->unsignedInteger('priority_id');
-            $table->unsignedIntefer('status_id');
+            $table->unsignedInteger('status_id');
             $table->unsignedInteger('resolution_id')->nullable();
-            $table->unsignedIntefer('severity_id')->nullable();
+            $table->unsignedInteger('severity_id')->nullable();
 
             $table->string('title', 100);
             $table->text('description')->nullable();
