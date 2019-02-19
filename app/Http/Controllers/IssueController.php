@@ -8,13 +8,26 @@ use Illuminate\Http\Request;
 class IssueController extends Controller
 {
     /**
+     * Instantiate a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        //
+        // TODO: Agregar paginacion
+        $issues = Issue::all();
+
+        return view('issues.index', compact('issues'));
     }
 
     /**
@@ -24,7 +37,11 @@ class IssueController extends Controller
      */
     public function create()
     {
-        //
+        $issue = new Issue;
+        // TODO: Completar los campos a ser guardados
+        // E.g.: $issue->name = request->name;
+
+        return view('issues.create', compact('issue'));
     }
 
     /**
@@ -35,7 +52,8 @@ class IssueController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // TODO: Agregar validlaciones
+        return redirect()->back();
     }
 
     /**
@@ -46,7 +64,7 @@ class IssueController extends Controller
      */
     public function show(Issue $issue)
     {
-        //
+        return view('issues.show', compact('issue'));
     }
 
     /**
@@ -57,7 +75,7 @@ class IssueController extends Controller
      */
     public function edit(Issue $issue)
     {
-        //
+        return view('issues.edit', compact('issue'));
     }
 
     /**
@@ -69,7 +87,14 @@ class IssueController extends Controller
      */
     public function update(Request $request, Issue $issue)
     {
-        //
+        // TODO: Agregar validlaciones
+
+        // TODO: Completar los campos a ser guardados
+        // E.g.: $issue->name = request->name;
+        
+        $issue->save();
+
+        return redirect()->view('issues.show', compact('issue'));
     }
 
     /**
@@ -80,6 +105,6 @@ class IssueController extends Controller
      */
     public function destroy(Issue $issue)
     {
-        //
+        // TODO: Agregar softDeletes
     }
 }
