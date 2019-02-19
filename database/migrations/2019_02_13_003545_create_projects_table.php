@@ -19,6 +19,7 @@ class CreateProjectsTable extends Migration
             $table->string('name')->comment('Project\'s name. E.g.: Debugs');
             $table->text('description')->nullable();
             $table->timestamps();
+            // TODO: Agregar softDelete
         });
     }
 
