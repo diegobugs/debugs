@@ -48,12 +48,15 @@ class ProjectController extends Controller
     public function store(Request $request)
     {
         // TODO: Agregar validaciones
-        $project = new Project();
+        $project = new Project;
+
         $project->name = $request->name;
+        $project->skey = $request->skey;
+        $project->description = $request->description;
 
         $project->save();
 
-        return redirect()->route('projects.index');
+        return redirect()->route('projects.show', $project->id);
     }
 
     /**
@@ -90,6 +93,9 @@ class ProjectController extends Controller
     {
         // TODO: Agregar validaciones
         $project->name = $request->name;
+        $project->skey = $request->skey;
+        $project->description = $request->description;
+        
         $project->save();
 
         return view('projects.show', compact('project'));
