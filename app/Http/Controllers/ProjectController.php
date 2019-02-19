@@ -47,6 +47,7 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
+        // TODO: Agregar validaciones
         $project = new Project();
         $project->name = $request->name;
 
@@ -87,6 +88,7 @@ class ProjectController extends Controller
      */
     public function update(Request $request, Project $project)
     {
+        // TODO: Agregar validaciones
         $project->name = $request->name;
         $project->save();
 
