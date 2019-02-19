@@ -13,7 +13,7 @@ class CreateMenusTable extends Migration
      */
     public function up()
     {
-        // @TODO: Un menu pertenece a un objeto
+        // TODO: Un menu pertenece a un objeto
         Schema::create('menus', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
