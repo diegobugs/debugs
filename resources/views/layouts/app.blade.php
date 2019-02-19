@@ -45,6 +45,17 @@
                                 </div>
                             </div>
                         </li>
+                        <li>
+                            <div class="btn-group">
+                                <a href="{{route('issues.index')}}" class="btn nav-link">Issues</button>
+                                                        <a class="btn nav-link dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-reference="parent">
+                                                          <span class="sr-only">Toggle Dropdown</span>
+                                                        </a>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="{{route('issues.create')}}">Create</a>
+                                </div>
+                            </div>
+                        </li>
                         @endauth
                     </ul>
 
