@@ -30,6 +30,7 @@ class CreateIssuesTable extends Migration
             $table->timestamp('due_date')->nullable();
             $table->integer('views')->nullable();
             $table->integer('votes')->nullable();
+            $table->softDeletes();
             $table->timestamps();
 
             $table->foreign('project_id')->references('id')->on('projects');

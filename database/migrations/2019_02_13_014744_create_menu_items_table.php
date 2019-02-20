@@ -19,6 +19,7 @@ class CreateMenuItemsTable extends Migration
             
             $table->increments('id');
             $table->unsignedInteger('menu_id');
+            $table->softDeletes();
             $table->timestamps();
 
             $table->foreign('menu_id')->references('id')->on('menus');

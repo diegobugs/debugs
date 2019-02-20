@@ -18,6 +18,7 @@ class CreateProjectsTable extends Migration
             $table->string('skey', 6)->comment('Project Shortcut Key. E.g.: DEBUGS');
             $table->string('name')->comment('Project\'s name. E.g.: Debugs');
             $table->text('description')->nullable();
+            $table->softDeletes();
             $table->timestamps();
             // TODO: Agregar softDelete
         });
