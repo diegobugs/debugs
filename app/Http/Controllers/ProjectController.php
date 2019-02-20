@@ -48,6 +48,17 @@ class ProjectController extends Controller
     public function store(Request $request)
     {
         // TODO: Agregar validaciones
+        // Tambien puede ser por form request
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'skey' => 'required|string|max:6',
+            'description' => 'nullable|string'
+        ], [], [
+            'name' => 'Project\'s name',
+            'skey' => 'Project\'s Shortcut key',
+            'description' => 'Description',
+        ]);
+
         $project = new Project;
 
         $project->name = $request->name;
@@ -95,7 +106,7 @@ class ProjectController extends Controller
         $project->name = $request->name;
         $project->skey = $request->skey;
         $project->description = $request->description;
-        
+
         $project->save();
 
         return view('projects.show', compact('project'));
