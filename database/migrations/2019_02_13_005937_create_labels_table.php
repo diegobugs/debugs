@@ -17,6 +17,7 @@ class CreateLabelsTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('project_id')->nullable();
             $table->string('name');
+            $table->softDeletes();
             $table->timestamps();
 
             $table->foreign('project_id')->references('id')->on('projects');
