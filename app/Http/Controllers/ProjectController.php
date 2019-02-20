@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Project;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreProject;
 
 class ProjectController extends Controller
 {
@@ -45,22 +46,10 @@ class ProjectController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreProject $request)
     {
-        // TODO: Agregar validaciones
-        // Tambien puede ser por form request
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'skey' => 'required|string|max:6',
-            'description' => 'nullable|string'
-        ], [], [
-            'name' => 'Project\'s name',
-            'skey' => 'Project\'s Shortcut key',
-            'description' => 'Description',
-        ]);
-
         $project = new Project;
-
+        
         $project->name = $request->name;
         $project->skey = $request->skey;
         $project->description = $request->description;
@@ -100,16 +89,15 @@ class ProjectController extends Controller
      * @param  \App\Project  $project
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Project $project)
+    public function update(StoreProject $request, Project $project)
     {
-        // TODO: Agregar validaciones
         $project->name = $request->name;
         $project->skey = $request->skey;
         $project->description = $request->description;
 
         $project->save();
 
-        return view('projects.show', compact('project'));
+        return redirect()->route('projects.show', $project->id);
     }
 
     /**

@@ -13,7 +13,7 @@ class StoreProject extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,73 +23,19 @@ class StoreProject extends FormRequest
      */
     public function rules()
     {
-        // PARA EL UNIQUE
-        // METODO 1
-        // $id = null;
+        $id = null;
 
-        // if ($this->category) {
-        //     $id = $this->category->id;
-        // }
+        if ($this->project) {
+            $id = $this->project->id;
+        }
 
-
-
-        // METODO 2
-        // if ($this->category) {
-        //     return [
-        //         'name' => 'required|alpha_num_spaces|unique:categories,name,' . $this->category->id
-        //     ];
-        // }
-
-        // return [
-        //     'name' => 'required|alpha_num_spaces|unique:categories'
-        // ];
-
-
-        // METODO 3
-        // switch ($this->method()) {
-        //     case 'POST':
-        //         return [
-        //             'name' => 'required|unique:categories,name',
-        //         ];
-        //         break;
-
-        //     case 'PATCH':
-        //     case 'PUT':
-        //         return [
-        //             'name' => 'required|unique:categories,name,' . $this->category->id,
-        //         ];
-        //         break;
-        // }
         return [
-            //
+            'name' => 'required|string|max:255',
+            'skey' => 'required|string|max:6|unique:categories,name,' . $id,
+            'description' => 'nullable|string'
         ];
     }
-    /**
-     * Configure the validator instance.
-     *
-     * @param  \Illuminate\Validation\Validator  $validator
-     * @return void
-     */
-    public function withValidator($validator)
-    {
-        $validator->after(function ($validator) {
-            if ($this->somethingElseIsInvalid()) {
-                $validator->errors()->add('field', 'Something is wrong with this field!');
-            }
-        });
-    }
-    /**
-     * Get the error messages for the defined validation rules.
-     *
-     * @return array
-     */
-    public function messages()
-    {
-        return [
-            'title.required' => 'A title is required',
-            'body.required' => 'A message is required',
-        ];
-    }
+    
     /**
      * Get custom attributes for validator errors.
      *
@@ -98,7 +44,9 @@ class StoreProject extends FormRequest
     public function attributes()
     {
         return [
-            'email' => 'email address',
+            'name' => 'project\'s name',
+            'skey' => 'project\'s Shortcut key',
+            'description' => 'Description',
         ];
     }
 }
