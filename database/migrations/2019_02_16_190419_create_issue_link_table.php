@@ -34,6 +34,9 @@ class CreateIssueLinkTable extends Migration
      */
     public function down()
     {
+        Schema::table('issues', function (Blueprint $table) {
+            $table->dropForeign(['link_type_id', 'inward_issue_id', 'outward_issue_id']);
+        });
         Schema::dropIfExists('issue_link');
     }
 }
