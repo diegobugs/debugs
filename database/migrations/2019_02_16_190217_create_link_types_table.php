@@ -18,6 +18,7 @@ class CreateLinkTypesTable extends Migration
             $table->string('name', 20);
             $table->string('inward')->comment('On assigned issue. E.g.: Bloqued by [issue]');
             $table->string('outward')->comment('On related issue. E.g.: Blocks [issue]');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

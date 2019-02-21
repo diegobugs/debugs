@@ -17,6 +17,7 @@ class CreateResolutionsTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->integer('sequence');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
