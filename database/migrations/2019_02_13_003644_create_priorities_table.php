@@ -18,7 +18,7 @@ class CreatePrioritiesTable extends Migration
             $table->string('name');
             $table->string('color');
             $table->integer('sequence');
-
+            $table->softDeletes();
             $table->timestamps();
         });
     }

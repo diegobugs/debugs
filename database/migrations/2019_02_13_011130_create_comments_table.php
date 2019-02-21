@@ -18,6 +18,7 @@ class CreateCommentsTable extends Migration
             $table->unsignedInteger('user_id');
             $table->text('body');
             $table->morphs('comment');
+            $table->softDeletes();
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users');
