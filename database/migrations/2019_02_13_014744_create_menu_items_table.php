@@ -16,13 +16,11 @@ class CreateMenuItemsTable extends Migration
         // TODO: Un menu item pertenece a un menu
         // y si pertenece a un menu item es un menu desplegable (?)
         Schema::create('menu_items', function (Blueprint $table) {
-            
+
             $table->increments('id');
-            $table->unsignedInteger('menu_id');
+            $table->morphs('menu_item');
             $table->softDeletes();
             $table->timestamps();
-
-            $table->foreign('menu_id')->references('id')->on('menus');
         });
     }
 
@@ -33,9 +31,6 @@ class CreateMenuItemsTable extends Migration
      */
     public function down()
     {
-        Schema::table('menu_items', function(Blueprint $table){
-            $table->dropForeign(['menu_id']);
-        });
         Schema::dropIfExists('menu_items');
     }
 }

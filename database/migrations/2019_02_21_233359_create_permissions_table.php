@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateLabelsTable extends Migration
+class CreatePermissionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,12 @@ class CreateLabelsTable extends Migration
      */
     public function up()
     {
-        Schema::create('labels', function (Blueprint $table) {
+        Schema::create('permissions', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('project_id')->nullable();
             $table->string('name');
+            $table->enum('permission', ['A', 'V', 'D'])->comment('[A]llow [V]iew [D]eny');
             $table->softDeletes();
             $table->timestamps();
-
-            $table->foreign('project_id')->references('id')->on('projects');
         });
     }
 
@@ -31,9 +29,6 @@ class CreateLabelsTable extends Migration
      */
     public function down()
     {
-        Schema::table('issues', function (Blueprint $table) {
-            $table->dropForeign(['project_id']);
-        });
-        Schema::dropIfExists('labels');
+        Schema::dropIfExists('permissions');
     }
 }
