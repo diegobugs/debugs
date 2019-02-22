@@ -30,8 +30,9 @@ class CreateIssueLabelTable extends Migration
      */
     public function down()
     {
-        Schema::table('issues', function (Blueprint $table) {
-            $table->dropForeign(['issue_id', 'label_by']);
+        Schema::table('issue_label', function (Blueprint $table) {
+            $table->dropForeign(['issue_id']);
+            $table->dropForeign(['label_id']);
         });
         Schema::dropIfExists('issue_label');
     }
