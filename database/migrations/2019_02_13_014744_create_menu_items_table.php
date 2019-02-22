@@ -13,10 +13,7 @@ class CreateMenuItemsTable extends Migration
      */
     public function up()
     {
-        // TODO: Un menu item pertenece a un menu
-        // y si pertenece a un menu item es un menu desplegable (?)
         Schema::create('menu_items', function (Blueprint $table) {
-
             $table->increments('id');
             $table->morphs('menu_item');
             $table->softDeletes();
