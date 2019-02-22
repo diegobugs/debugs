@@ -15,10 +15,11 @@ class CreatePermissionsTable extends Migration
     {
         Schema::create('permissions', function (Blueprint $table) {
             $table->increments('id');
+            $table->unsignedInteger('project_id')->nullable();
             $table->string('name');
-            $table->enum('permission', ['A', 'V', 'D'])->comment('[A]llow [V]iew [D]eny');
-            $table->softDeletes();
             $table->timestamps();
+
+            $table->foreign('project_id')->references('id')->on('projects');
         });
     }
 
