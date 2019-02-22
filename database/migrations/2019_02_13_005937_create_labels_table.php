@@ -31,7 +31,7 @@ class CreateLabelsTable extends Migration
      */
     public function down()
     {
-        Schema::table('issues', function (Blueprint $table) {
+        Schema::table('labels', function (Blueprint $table) {
             $table->dropForeign(['project_id']);
         });
         Schema::dropIfExists('labels');

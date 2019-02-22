@@ -53,7 +53,14 @@ class CreateIssuesTable extends Migration
     public function down()
     {
         Schema::table('issues', function (Blueprint $table) {
-            $table->dropForeign(['project_id', 'reported_by', 'assigned_to', 'category_id', 'priority_id', 'status_id', 'resolution_id', 'severity_id']);
+            $table->dropForeign(['project_id']);
+            $table->dropForeign(['reported_by']);
+            $table->dropForeign(['assigned_to']);
+            $table->dropForeign(['category_id']);
+            $table->dropForeign(['priority_id']);
+            $table->dropForeign(['status_id']);
+            $table->dropForeign(['resolution_id']);
+            $table->dropForeign(['severity_id']);
         });
         Schema::dropIfExists('issues');
     }
