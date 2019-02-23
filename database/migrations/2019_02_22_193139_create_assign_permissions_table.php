@@ -16,7 +16,7 @@ class CreateAssignPermissionsTable extends Migration
         Schema::create('assign_permissions', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('permission_id');
-            $table->morphs('permit')->comment('Morphs between Perm Type (Rol, Group, User) and Identifier (RolID, GroupID, UserID)');
+            $table->morphs('permit'); //('Morphs between Perm Type (Rol, Group, User) and Identifier (RolID, GroupID, UserID)')
 
             $table->timestamps();
 
