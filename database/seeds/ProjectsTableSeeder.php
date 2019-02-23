@@ -13,7 +13,8 @@ class ProjectsTableSeeder extends Seeder
     {
         DB::table('projects')->insert([
             'skey' => 'TEST',
-            'name' => 'Test project'
+            'name' => 'Test project',
+            'description' => 'This project has been created for testing purpose'
         ]);
     }
 }
