@@ -11,9 +11,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call([
-            UsersTableSeeder::class,
-            ProjectsTableSeeder::class
-        ]);
+        // Only seed the database with test data if the environment is local
+        if (App::environment('local')){
+            $this->call([
+                UsersTableSeeder::class,
+                ProjectsTableSeeder::class
+            ]);
+        }
     }
 }
