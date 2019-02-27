@@ -13,4 +13,11 @@ class Object extends Model
      */
     protected $fillable = [
     ];
+
+    
+    public function fields()
+    {
+        return $this->hasMany('App\Field');
+    }
+    
 }

@@ -16,6 +16,9 @@ class CreateFieldsTable extends Migration
         Schema::create('fields', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('object_id');
+            $table->string('name');
+            $table->string('label');
+            $table->string('type');
             $table->softDeletes();
             $table->timestamps();
 

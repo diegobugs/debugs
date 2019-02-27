@@ -15,6 +15,10 @@ class CreateObjectsTable extends Migration
     {
         Schema::create('objects', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('name');
+            $table->string('plural_name');
+            $table->string('label');
+            $table->string('class_name');
             $table->softDeletes();
             $table->timestamps();
         });
