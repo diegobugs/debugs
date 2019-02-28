@@ -32,7 +32,7 @@ class UsersTableSeeder extends Seeder
 
         $object->fields()->createMany([
             [
-                'name' => 'password',
+                'name' => 'username',
                 'label' => 'Username',
                 'type' => 'text'
             ],
