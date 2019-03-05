@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Object;
+use App\Obj;
 
 class UsersTableSeeder extends Seeder
 {
@@ -21,7 +21,7 @@ class UsersTableSeeder extends Seeder
             ],
         ]);
 
-        $object = new Object();
+        $object = new Obj();
 
         $object->name = 'user';
         $object->plural_name = 'users';

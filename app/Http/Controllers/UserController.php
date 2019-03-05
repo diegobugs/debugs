@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Obj;
+use App\User;
 use Illuminate\Http\Request;
 
-class ObjectController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,6 +15,9 @@ class ObjectController extends Controller
     public function index()
     {
         //
+        $u = User::find(1)->createForm();
+        return view('users.index', compact('u'));
+        
     }
 
     /**
@@ -41,10 +44,10 @@ class ObjectController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Obj  $object
+     * @param  \App\Status  $status
      * @return \Illuminate\Http\Response
      */
-    public function show(Obj $object)
+    public function show(Status $status)
     {
         //
     }
@@ -52,10 +55,10 @@ class ObjectController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Obj  $object
+     * @param  \App\Status  $status
      * @return \Illuminate\Http\Response
      */
-    public function edit(Obj $object)
+    public function edit(Status $status)
     {
         //
     }
@@ -64,10 +67,10 @@ class ObjectController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Obj  $object
+     * @param  \App\Status  $status
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Obj $object)
+    public function update(Request $request, Status $status)
     {
         //
     }
@@ -75,10 +78,10 @@ class ObjectController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Obj  $object
+     * @param  \App\Status  $status
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Obj $object)
+    public function destroy(Status $status)
     {
         //
     }

@@ -2,31 +2,23 @@
 namespace App\Debugs;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Object;
+use App\Obj;
 use Collective\Html\FormFacade as Form;
 use Illuminate\Support\Facades\Input;
 
-class DynamicForm {
+class DynamicForm
+{
     private static $model;
-    public static function generateForm($model, $method){
-        self::$model = $model;
-        switch($method){
-            case 'create':
-                {
-                    self::create();
-                }
-                break;
-            case 'edit':
-                {
-                    self::edit();
-                }
-                break;
-            case 'view':
-                {
-                    self::view();
-                }
-                break;
-        }
+
+    private static $method;
+
+    private static $methods = array('create' => 'POST', 'edit' => 'PATCH', 'show' => 'GET');
+
+    public static function generateForm($model, String $method)
+    {
+        static::$model= $model;
+        static::$method = $method;
+        return static::$method();
     }
 
     private static function create()
@@ -36,9 +28,29 @@ class DynamicForm {
         // TODO: Decidir como mostrar lo que se puede validar o no
         // TODO: Agregar los span para errores
         // TODO: Agregar divs para que se vea bien el input (div.form-group en bootstrap)
-        foreach (self::getObject()->fields as $field) {
-            echo Form::input($field->type, $field->name, Input::old($field->name, $field->name), ['class' => 'form-control']) . PHP_EOL;
+        $form = '';
+        if (static::$method == 'view' ){
+            $form .= Form::model(static::$model);
+            $form .= '<fieldset disabled>';
+        } else {
+            $form .= Form::model(static::$model ,['method ' => static::$methods[static::$method]]);
         }
+        foreach (static::getObject()->fields as $field) {
+            $fieldName = $field->name;
+            $form .= '<div class="form-group">';
+            $form .= Form::label($field->name, $field->label);
+            $form .= Form::input($field->type, $field->name, Input::old($field->name, static::$model->$fieldName), ['class' =>'form-control']) . PHP_EOL;
+            $form .= '</div>';
+        }
+        if (static::$method == 'view' ){
+            $form .= '</fieldset>';
+        } else {
+            $form .= '<hr />';
+            $form .= Form::submit('Save', ['name' => 'submit', 'class' => 'btn btn-primary']);
+        }
+        $form .= Form::close();
+
+        return $form;
     }
 
     private static function edit()
@@ -49,6 +61,6 @@ class DynamicForm {
 
     private static function getObject()
     {
-        return Object::where('class_name', class_basename(self::$model))->first();
+        return Obj::where('class_name', class_basename(static::$model))->first();
     }
 }

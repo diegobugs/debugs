@@ -4,8 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Object extends Model
+class Obj extends Model
 {
+    protected $table = 'objects';
     /**
      * The attributes that are mass assignable.
      *
@@ -17,7 +18,7 @@ class Object extends Model
     
     public function fields()
     {
-        return $this->hasMany('App\Field');
+        return $this->hasMany('App\Field', 'object_id');
     }
     
 }

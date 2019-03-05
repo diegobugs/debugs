@@ -7,7 +7,7 @@ trait HasFormTrait {
     */
     // public function object()
     // {
-    //     return $this->hasOne('App\Object');
+    //     return $this->hasOne('App\Obj');
     // }
 
     // public function fields()
@@ -20,18 +20,18 @@ trait HasFormTrait {
     */
     public function createForm()
     {
-        $this->generateForm('create');
+        return $this->generateForm('create');
     }
     public function editForm()
     {
-        $this->generateForm('edit');
+        return $this->generateForm('edit');
     }
     public function viewForm()
     {
-        $this->generateForm('view');
+        return $this->generateForm('view');
     }
 
     private function generateForm($method){
-        DynamicForm::generateForm($this, $method);
+        return DynamicForm::generateForm($this, $method);
     }
 }
